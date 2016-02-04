@@ -111,29 +111,11 @@ class Axolotl
 
 
             Scanner sc = new Scanner(System.in);
-            System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             System.out.print("Enter name of class \t:\t");
             String class_name = sc.nextLine();
-            System.out.println("\n\n\n\n\n\n\nYour Code\t:" + "\n\n\n\n\n\n\n" + x);
             x = x.replace("\n","");
             x =  sep(x);
             x = "import java.util.*;\nimport java.io.*;\n\n\nclass " + class_name + "\n{\npublic static void main(String args[]) throws Exception\n{\n\nScanner sc=new Scanner(System.in);\n\n\n" + x + "\n}\n}";
-            System.out.println("\n\n----------\n\n");
-            System.out.println("Please Review your code.");
-            Thread.sleep(1000);
-            System.out.print("Are you sure you want to continue ? : [ Y / n ]");
-            String ch = sc.nextLine();
-
-            if(ch.equalsIgnoreCase("n") || ch.equalsIgnoreCase("no") )
-            {
-                System.out.println("Cancelled.");
-                System.exit(0);
-            }
-
-            System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-            Thread.sleep(100);
-            System.out.println("OUTPUT\n\n---------------------\n\n" + x + "\n\n--------------------\n\n");
-
             try
             {
                 Files.write(Paths.get(output), x.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
@@ -145,8 +127,6 @@ class Axolotl
                 System.exit(0);
             }
 
-            System.out.println("Succesfully completed. [Enter] to continue.");
-            String blank = sc.nextLine();
             System.exit(0);
 
         }
