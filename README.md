@@ -2,7 +2,8 @@
 
 #### One Syntax to rule them all !
 
-<img src = "logo.png" style = "float:center; border-radius:5px" > 
+
+<img src = "logo.png" align = "center" style = "border-radius:5px" > 
 
 
 ---
