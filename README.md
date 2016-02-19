@@ -2,7 +2,8 @@
 
 #### One Syntax to rule them all !
 
-<img src = "logo.png" style = "align:center; border-radius:5px" ></img> 
+<img src = "logo.png" style = "float:center; border-radius:5px" > 
+
 
 ---
  __Axolotl__ is a _pseudo -_ programming langauge.
