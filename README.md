@@ -2,7 +2,7 @@
 
 #### One Syntax to rule them all !
 
-<img src = "logo.png" style = "align:center; border-radius:2px" ></img> 
+<img src = "logo.png" style = "align:center; border-radius:5px" ></img> 
 
 ---
  __Axolotl__ is a _pseudo -_ programming langauge.
@@ -46,8 +46,8 @@ $ cat output
 $ axolotl input output java
 Enter name of class   : HelloWorld!                
 $ cat output 
-''' 
-'''Java
+```
+```Java
 import java.util.*;
 import java.io.*;
 
