@@ -1,9 +1,10 @@
-# Axolotl
-
-#### One Syntax to rule them all !
-
-
 <p align = "center">
+<h1> Axolotl </h1>
+
+<h4> One Syntax to rule them all ! </h4>
+
+
+
 <img src = "logo.png" align = "center" style = "border-radius:5px" > 
 </p>
 
