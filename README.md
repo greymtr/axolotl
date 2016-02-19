@@ -3,8 +3,9 @@
 #### One Syntax to rule them all !
 
 
+<p align = "center">
 <img src = "logo.png" align = "center" style = "border-radius:5px" > 
-
+</p>
 
 ---
  __Axolotl__ is a _pseudo -_ programming langauge.
