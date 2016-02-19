@@ -1,7 +1,9 @@
 # Axolotl
 
 #### One Syntax to rule them all !
- 
+
+![Axolotl](logo.png) 
+
 ---
  __Axolotl__ is a _pseudo -_ programming langauge.
  
