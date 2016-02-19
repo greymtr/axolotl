@@ -46,7 +46,8 @@ $ cat output
 $ axolotl input output java
 Enter name of class   : HelloWorld!                
 $ cat output 
-''' '''java
+''' 
+'''java
 import java.util.*;
 import java.io.*;
 
