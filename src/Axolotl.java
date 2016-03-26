@@ -46,6 +46,7 @@ class Axolotl
 
             String input = "", output = "";
             String x = "";
+            String help = "USAGE: axolotl [INPUT FILE] [OUTPUT FILE]";
 
             switch( args.length )
             {
@@ -54,9 +55,9 @@ class Axolotl
                     {
                         case "--help":
                         case "--h":
+                        case "-h":
                         case "h":
-                            System.out.println("\n\nMake sure your files are present within the same directory as the .java and .class files of these programs...");
-                            System.out.println("\n\n\n\n for help try giving --help as the first argument.\n\nFor license related issues Please give --license as an argument.\n\n\n\n\n\n VALID OPTIONS : \n\n\njava Axolotl --help\tjava Axolotl --h\n\njava Axolotl --license\tjava Axolotl -l\n\n\n\n\n For Example, Supposing you have axolotl-readable content in file \"file1\" and you want it's output to go into \"file2\" you need to type in :\n\n\tjava Axolotl file1 file2\n\n\n\n Alternatively on linux machines, due to the presence of the bash script you can do :\n\n\t./Axolotl.sh file1 file2\n\n\nBy adding your current directory at the end of your env $PATH , you can execute it like :\n\n\n\tAxolotl file1 file2 ");
+                            System.out.println(help);
                             System.exit(0);
                             break;
 
@@ -76,14 +77,14 @@ class Axolotl
                             break;
 
                         default:
-                                System.out.println("INVALID.\nFor help give argument --help. For license give argument --license");
+                                System.out.println(help);
 
                     }
                 System.exit(0);
                 break;
 
                 case 0:
-                    System.out.println("INVALID.\nFor help give argument --help. For license give argument --license");
+                    System.out.println(help);
                     System.exit(0);
                     break;
 
@@ -96,16 +97,14 @@ class Axolotl
                     }
                     catch(Exception E)
                     {
-                        System.out.println("Invalid Input.\n\n Your input file's name should be the first argument when executing the program\n");
-                        System.out.println("\n\nAlso make sure your files are present within the same directory as the .java and .class files of these programs...");
-                        System.exit(0);
+                        System.out.println(help);
                     }
                     break;
             }
 
             if(args.length >= 3)
             {
-                System.out.println("INVALID.\nFor help give argument --help. For license give argument --license");
+                System.out.println(help);
                 System.exit(0);
             }
 
@@ -272,20 +271,61 @@ class Axolotl
 
     //--------------------------------------------------------------------------
 
-    public static String sep(String x) throws Exception
+    public static String sep(String in_data) throws Exception
+    {
+      StringBuffer input = new StringBuffer(in_data);
+    String label = "";
+    
+    char op1 = '<';
+    char op2 = '[';
+    char cl1 = ']';
+    char cl2 = '>';
+    char opl = '(';
+    char cll = ')';
+    int off = 0;
+
+    String tag = input.substring( input.indexOf("" + op1) + 1 , input.indexOf("" + cl1) );
+
+    System.out.println("TAG\t\t:"+tag);
+    
+    String opt = op1 + tag + cl1 ;
+    int i_opt = input.indexOf(opt);
+    System.out.println("OPT\t\t"+opt);
+    System.out.println("i-opt\t\t:"+i_opt);
+
+    String clt = op2 + tag + cl2 ;
+    int i_clt = input.indexOf(clt);
+    System.out.println("CLT\t\t:"+clt);
+    System.out.println("i-clt\t\t:"+i_clt);
+
+    int t_l = opt.length();
+    System.out.println("Length\t\t"+ t_l);
+
+    String content = input.substring( i_opt + t_l , i_clt );
+    System.out.println("content1\t\t:"+content);    
+
+    if( content.charAt(0) == opl )
     {
 
-      String tag = x.substring(x.indexOf('<')+1,x.indexOf(']') );
-      int f_checker = x.indexOf("["+tag+">") + 2 +tag.length();
-      int end = x.indexOf("["+tag+">");
-      String content = x.substring(x.indexOf('<'+ tag + ']') + tag.length()+2, x.indexOf('['+tag+'>') );
-      String new1 = ("<"+tag+"]"+content+"["+tag+">");
-      x = repFirst(new1, x);
-      String out = "";
-      String y = process(content,tag);
-      x = check(x) ? sep(x) : x;
-      out = y + x;
-      return out;
+      label = content.substring( 1 , content.indexOf(cll) );    
+      content = input.substring( input.indexOf( opt + label ) + t_l  + label.length() , input.indexOf( label + clt )  );
+      System.out.println("content2\t\t:"+content);
+      
+    }
+    
+    String processed = process( content , tag );
+    System.out.println("precessed\t\t:"+processed);
+    input.replace( input.indexOf(opt + label) , input.indexOf(label + clt) + t_l + label.length() , processed   );
+
+    
+    String output = new String(input);
+    System.out.println("output");
+
+    output = check(output) ? sep(output) : output;
+
+
+    return output;
+
 
     }
 
@@ -315,10 +355,10 @@ class Axolotl
                 out = input(content);
                 break;
             case "var":
-                out = Var.var(content);
+                out = var(content);
                 break;
             case "sw":
-                out = Switch.sw(content);
+                out = sw(content);
                 break;
             case "if":
                 out = if_(content);
@@ -350,13 +390,10 @@ class Axolotl
 
     //--------------------------------------------------------------------------
 
-}
 
 
 //------------------------------------------------------------------------------
 
-class Switch
-{
 
     static int index = 0;
 
@@ -396,14 +433,8 @@ class Switch
     return out;
 
     }
-}
-
-//------------------------------------------------------------------------------
-
-class Var
-{
     public static String var_list[];
-    public static int index = 0;
+    public static int vindex = 0;
     public static int tmpInd = 0;
     private static String storeForTheTimeBeing[];
 
@@ -434,18 +465,18 @@ class Var
             {
                 var_list= new String[1];
                 var_list[0] = name;
-                tmpInd = index;
-                index++;
+                tmpInd = vindex;
+                vindex++;
                 storeForTheTimeBeing= new String[tmpInd];
             }
             else
             {
                 System.arraycopy(var_list, 0, storeForTheTimeBeing, 0, var_list.length);
-                var_list= new String[index];
+                var_list= new String[vindex];
                 System.arraycopy(storeForTheTimeBeing, 0, var_list, 0, storeForTheTimeBeing.length);
                 var_list[(var_list.length - 1)] = name;
-                tmpInd = index;
-                index++;
+                tmpInd = vindex;
+                vindex++;
                 storeForTheTimeBeing= new String[tmpInd];
             }
         }
@@ -460,8 +491,8 @@ class Var
             {
                 var_list= new String[1];
                 var_list[0] = name;
-                tmpInd = index;
-                index++;
+                tmpInd = vindex;
+                vindex++;
                 storeForTheTimeBeing= new String[tmpInd];
             }
             else
@@ -470,8 +501,8 @@ class Var
                 var_list= new String[index];
                 System.arraycopy(storeForTheTimeBeing, 0, var_list, 0, storeForTheTimeBeing.length);
                 var_list[(var_list.length - 1)] = name;
-                tmpInd = index;
-                index++;
+                tmpInd = vindex;
+                vindex++;
                 storeForTheTimeBeing= new String[tmpInd];
             }
 
@@ -485,8 +516,8 @@ class Var
             {
                 var_list= new String[1];
                 var_list[0] = name;
-                tmpInd = index;
-                index++;
+                tmpInd = vindex;
+                vindex++;
                 storeForTheTimeBeing= new String[tmpInd];
             }
             else
@@ -495,8 +526,8 @@ class Var
                 var_list= new String[index];
                 System.arraycopy(storeForTheTimeBeing, 0, var_list, 0, storeForTheTimeBeing.length);
                 var_list[(var_list.length - 1)] = name;
-                tmpInd = index;
-                index++;
+                tmpInd = vindex;
+                vindex++;
                 storeForTheTimeBeing= new String[tmpInd];
             }
 
@@ -515,8 +546,8 @@ class Var
             {
                 var_list= new String[1];
                 var_list[0] = name;
-                tmpInd = index;
-                index++;
+                tmpInd = vindex;
+                vindex++;
                 storeForTheTimeBeing= new String[tmpInd];
             }
             else
@@ -525,8 +556,8 @@ class Var
                 var_list = new String[index];
                 System.arraycopy(storeForTheTimeBeing, 0, var_list, 0, storeForTheTimeBeing.length);
                 var_list[(var_list.length - 1)] = name;
-                tmpInd = index;
-                index++;
+                tmpInd = vindex;
+                vindex++;
                 storeForTheTimeBeing= new String[tmpInd];
             }
 
