@@ -286,40 +286,29 @@ class Axolotl
 
     String tag = input.substring( input.indexOf("" + op1) + 1 , input.indexOf("" + cl1) );
 
-    System.out.println("TAG\t\t:"+tag);
-    
     String opt = op1 + tag + cl1 ;
     int i_opt = input.indexOf(opt);
-    System.out.println("OPT\t\t"+opt);
-    System.out.println("i-opt\t\t:"+i_opt);
 
     String clt = op2 + tag + cl2 ;
     int i_clt = input.indexOf(clt);
-    System.out.println("CLT\t\t:"+clt);
-    System.out.println("i-clt\t\t:"+i_clt);
 
     int t_l = opt.length();
-    System.out.println("Length\t\t"+ t_l);
 
     String content = input.substring( i_opt + t_l , i_clt );
-    System.out.println("content1\t\t:"+content);    
 
     if( content.charAt(0) == opl )
     {
 
       label = content.substring( 1 , content.indexOf(cll) );    
       content = input.substring( input.indexOf( opt + label ) + t_l  + label.length() , input.indexOf( label + clt )  );
-      System.out.println("content2\t\t:"+content);
       
     }
     
     String processed = process( content , tag );
-    System.out.println("precessed\t\t:"+processed);
     input.replace( input.indexOf(opt + label) , input.indexOf(label + clt) + t_l + label.length() , processed   );
 
     
     String output = new String(input);
-    System.out.println("output");
 
     output = check(output) ? sep(output) : output;
 
