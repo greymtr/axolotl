@@ -58,3 +58,7 @@ INSTALLATION
 In order to use Axolotl you need to perform a few steps.
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Greymtr/axolotl/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
