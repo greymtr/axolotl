@@ -133,26 +133,6 @@ class Axolotl
 
     //--------------------------------------------------------------------------
 
-    public static String repFirst(String whatToReplace, String toBeReplacedIn)
-    {
-        int len_repwith = whatToReplace.length();
-        int len_mainString = toBeReplacedIn.length();
-        String tmp, out;
-        String b = toBeReplacedIn.trim();
-        for(int i = 0; i < len_mainString; i++)
-        {
-            tmp = b.substring(i, len_repwith + i);
-            if (tmp.equals(whatToReplace))
-            {
-                out = b.substring(0, b.indexOf(tmp));
-                out += b.substring(b.indexOf(tmp) + len_repwith);
-                return out;
-            }
-        }
-        return toBeReplacedIn;
-    }
-
-    //--------------------------------------------------------------------------
 
     public static String display(String text)throws Exception
     {

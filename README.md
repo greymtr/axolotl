@@ -9,39 +9,21 @@
 </p>
 
 ---
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Greymtr/axolotl/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+---
  __Axolotl__ is a _pseudo -_ programming langauge.
- 
-### Wait.... So What does that mean ?
- 
-Well, most languages interact with the machine directly, you write your code and you get it translated to machine-understandable spaghetti which does stuff ! 
-Axolotl doesn't do this directly.
 
-Axolotl's user input consists of a modifiable tag-based syntax. Axolotl converts this into actual source code of another language, which can then be converted into the machine understandable code.
 
-### Okay, but what can this be used for ? 
+For those of you familiar with markdown, Axolotl is similar to Markdown, but instead of dealing with HTML it deals with numerous other languages.
 
-Axolotl was originally written to provide writers with a really easy way to make interactive fiction. It was meant to be an IF engine where you just type in your story, add the tags at the right places and you'll g fully-functioning IF, but early on in the development I realized that it could be used as a programming aid so we decided to pursue that idea.
+Axolotl takes it's input in a simplified tag-based syntax and converts it to your language of choice.
 
-Axolotl can be used in multiple ways such as, but not limited to :
+You can write code along with Axolotl code as Axolotl has limited functionality and is designed primarily as an educational tool and a utility which helps in the creation of easily readable code in a fast way.
 
--     A Prototyping Tool
--     An educational tool for beginners
--     Generating the same program in multiple languages
--     A way to write programs in any language really quickly.
+Axolotl is still in it's beta stages.
 
-You can also download and use plugins that provide additional functionality.
 
-### A.... plugin system ?
 
-Yeah ! Just like a browser or an editor. Programming languages exist as "language packs" that can be downloaded as and when required.
-
-### So how am I supposed to use it ?
- 
-Axolotl can be run on any unix-like system, including OSX and all flavours of linux.
-
-An example of usage where the output language is java : 
-
- 
 ```sh
 $ cat input
 <d] Hello World ! [d>
@@ -69,14 +51,10 @@ System.out.println(" Hello World ! ");
 }
 }
 $ 
-```
- 
-## Features' Implementation status :
-- [X]   Core "Compiler"
-- [ ]   Plugin Support
-- [ ]   Support for languages.
-- [ ]   Immediate Execution
-- [ ]   Menu Interfaced Guidance
-- [ ]   Language-dependent data structures
-- [ ]   Methods and Objects usage and generation
+``` 
+
+INSTALLATION
+
+In order to use Axolotl you need to perform a few steps.
+
 
