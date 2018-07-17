@@ -4,35 +4,15 @@ import java.io.*;
 
 //----------------------------------
 
-/*
-
-    Official Documentation : http://ctrl-c.club/~greymtr/projects/Axolotl.html
-                         http://ctrl-c.club/~greymtr/Documentation.html
-
-*/
-
-//--------------
 
 /*
 
     Axolotl. A pseudo-programming languages used to write programs in multiple languages with a really simplified syntax, in order to facilitate easy learning of programming languages to novice programmers.
-    Copyright (C) 2016  Greymtr Smith.
-
     License : GNU GPL v3
-
     Refer to LICENSE.txt inside the folder.
 
 */
 
-//--------------
-
-/*
-
-    Please support us ! Recommend our software to programming beginners...
-    Spread the word ! Distribute the software.
-    As a user you are legally invested with the power to distribute, modify and share modified work provided it is licensed under the terms of the GNY GPLv3 or any other compatible copyleft software.
-
-*/
 
 //----------------------------------
 
@@ -83,7 +63,7 @@ class Axolotl
                 System.exit(0);
                 break;
 
-                case 0:
+                default:
                     System.out.println(help);
                     System.exit(0);
                     break;
@@ -101,13 +81,6 @@ class Axolotl
                     }
                     break;
             }
-
-            if(args.length >= 3)
-            {
-                System.out.println(help);
-                System.exit(0);
-            }
-
 
             Scanner sc = new Scanner(System.in);
             System.out.print("Enter name of class \t:\t");
